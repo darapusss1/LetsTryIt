@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Nenengg...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(to bottom right, #ffd6e0, #ffeaf1);
+      overflow-x: hidden;
+    }
+
+    .welcome-screen, .card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 700px;
+      padding: 50px;
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 0 30px rgba(255, 182, 193, 0.7);
+      text-align: center;
+      transition: all 1s ease-in-out;
+      z-index: 2;
+    }
+
+    .hidden {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.8);
+      pointer-events: none;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      color: #d63384;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    .btn {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 1em;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.5);
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #e0559e;
+    }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: gold;
+      animation: fall 5s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .gallery figure {
+      text-align: center;
+    }
+
+    .gallery img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .gallery figcaption {
+      font-size: 0.85em;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Musik -->
+  <audio id="bgMusic" src="bgmusic.mp3" loop></audio>
+  <audio id="clickSound" src="Mouse Click Sound Effect.mp3" preload="auto"></audio>
+
+  <!-- Konfeti -->
+  <div class="confetti" id="confetti"></div>
+
+  <!-- Halaman Depan -->
+  <div class="welcome-screen" id="welcome">
+    <h1>Hai Haloo neneng....!</h1>
+    <p>Klik tombol dibawah yaawww...🎁</p>
+    <button class="btn" onclick="openCard()">Buka Kartu</button>
+  </div>
+
+  <!-- Isi Kartu -->
+  <div class="card hidden" id="card">
+    <h1>Happy Birthday Neneng🎉</h1>
+    <p>
+      Nenenggg...<br><br>
+      Terima kasih sudah hadir di hidupku sebagai cahaya di kala gelap, sebagai pelukan hangat di kala sedih, dan sebagai tawa di saat dunia terasa berat.
+      Di hari spesialmu ini, aku berdoa semoga semua harapanmu segera menjadi nyata. Semoga kamu selalu dikelilingi orang-orang yang mencintaimu,
+      dan tak pernah kehabisan alasan untuk tersenyum. Jangan pernah ragu pada dirimu sendiri, karena kamu jauh lebih kuat dan berharga dari yang kamu kira.
+      Aku bersyukur Tuhan mempertemukan kita. Dunia ini terasa lebih indah karena ada kamu di dalamnya. Selamat bertambah usia.
+      Aku akan selalu ada, bukan hanya hari ini… tapi juga esok dan seterusnya💕
+    </p>
+
+    <div class="gallery">
+      <figure>
+        <img src="images_1.jpeg" alt="Foto 1">
+        <figcaption>Senyuman yang bikin hariku cerah ☀️</figcaption>
+      </figure>
+      <figure>
+        <img src="images_2.jpeg" alt="Foto 2">
+        <figcaption>Pose favoritku dari kamu 😍</figcaption>
+      </figure>
+      <figure>
+        <img src="images_3.jpeg" alt="Foto 3">
+        <figcaption>Waktu kamu lagi candid lucu 🤭</figcaption>
+      </figure>
+      <figure>
+        <img src="images_4.jpeg" alt="Foto 4">
+        <figcaption>Kenangan manis yang selalu kuingat 💕</figcaption>
+      </figure>
+    </div>
+
+    <footer>&copy; 2025 | Dara💕</footer>
+  </div>
+
+  <script>
+    // Buat konfeti
+    function createConfettiPiece() {
+      const confetti = document.getElementById('confetti');
+      const piece = document.createElement('div');
+      piece.classList.add('confetti-piece');
+      const colors = ['#ffd700','#ff69b4','#87ceeb','#ffb347','#e066ff','#4bffa5','#f67280'];
+      piece.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.animationDuration = (3 + Math.random() * 2) + 's';
+      piece.style.opacity = 0.7 + Math.random() * 0.3;
+      confetti.appendChild(piece);
+      setTimeout(() => confetti.removeChild(piece), 5000);
+    }
+
+    function startConfetti() {
+      for(let i=0; i<60; i++) {
+        setTimeout(createConfettiPiece, i*80);
+      }
+      setInterval(createConfettiPiece, 300);
+    }
+
+    function openCard() {
+      document.getElementById('welcome').classList.add('hidden');
+      document.getElementById('card').classList.remove('hidden');
+      document.getElementById('bgMusic').play();
+      document.getElementById('clickSound').play();
+      startConfetti();
+    }
+
+    document.body.addEventListener('click', () => {
+      let bgMusic = document.getElementById('bgMusic');
+      if (bgMusic.paused) bgMusic.play();
+    }, {once:true});
+  </script>
+</body>
+</html>
